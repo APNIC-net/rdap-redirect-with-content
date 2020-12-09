@@ -5,7 +5,7 @@
                                                              T. Harrison
                                                            G. Michaelson
                                                                    APNIC
-                                                        November 1, 2020
+                                                       December 10, 2020
 
 
                        RDAP Redirect with Content
@@ -55,7 +55,7 @@ Table of Contents
 
 Harrison & Michaelson                                           [Page 1]
 
-                       RDAP Redirect with Content          November 2020
+                       RDAP Redirect with Content          December 2020
 
 
    The client may also be interested in the registration data that the
@@ -111,7 +111,7 @@ Harrison & Michaelson                                           [Page 1]
 
 Harrison & Michaelson                                           [Page 2]
 
-                       RDAP Redirect with Content          November 2020
+                       RDAP Redirect with Content          December 2020
 
 
    rdapConformance array of a "/help" response, as well as any redirect
@@ -167,7 +167,7 @@ Harrison & Michaelson                                           [Page 2]
 
 Harrison & Michaelson                                           [Page 3]
 
-                       RDAP Redirect with Content          November 2020
+                       RDAP Redirect with Content          December 2020
 
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
