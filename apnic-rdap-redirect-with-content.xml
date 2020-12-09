@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC7231 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7231.xml">
+<!ENTITY RFC7481 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7481.xml">
+<!ENTITY RFC7480 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7480.xml">
+<!ENTITY RFC7483 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7483.xml">
+<!ENTITY RFC7484 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7484.xml">
+<!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
+]>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<?rfc strict="yes" ?>
+<?rfc toc="yes"?>
+<?rfc tocdepth="4"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes" ?>
+<?rfc compact="yes" ?>
+<?rfc subcompact="no" ?>
+<?rfc private="yes" ?>
+<rfc category="std" docName="apnic-rdap-redirect-with-content">
+
+  <front>
+    <title abbrev="RDAP Redirect with Content">RDAP Redirect with Content</title>
+
+    <author fullname="Tom Harrison" initials="T." surname="Harrison">
+      <organization abbrev="APNIC">Asia-Pacific Network Information Centre</organization>
+
+      <address>
+        <postal>
+          <street>6 Cordelia St</street>
+          <city>South Brisbane</city>
+          <region>QLD</region>
+          <code>4101</code>
+          <country>Australia</country>
+        </postal>
+
+        <email>tomh@apnic.net</email>
+
+      </address>
+    </author>
+
+    <author fullname="George G. Michaelson" initials="G." surname="Michaelson">
+      <organization abbrev="APNIC">Asia-Pacific Network Information Centre</organization>
+
+      <address>
+        <postal>
+          <street>6 Cordelia St</street>
+          <city>South Brisbane</city>
+          <region>QLD</region>
+          <code>4101</code>
+          <country>Australia</country>
+        </postal>
+
+        <email>ggm@apnic.net</email>
+
+      </address>
+    </author>
+
+    <date month="November" year="2020" />
+
+    <area></area>
+    <workgroup></workgroup>
+    <keyword></keyword>
+    <abstract>
+        <t>
+
+            The Registration Data Access Protocol (RDAP) is used by
+            Regional Internet Registries (RIRs) and Domain Name
+            Registries (DNRs) to provide access to their resource
+            registration information.  When an RDAP service operator
+            has delegated authority for a resource to a third party,
+            the operator will configure its RDAP service to redirect
+            requests for that resource to the third party.  However,
+            the client may be interested in the resource registration
+            data that the first service operator has in its own right,
+            for various reasons.  This document defines a conformance
+            code that a service operator can use to indicate that when
+            redirecting requests, it will also include as the body of
+            the response the RDAP object (if any) that it has in its
+            own right for the requested resource.
+
+        </t>
+    </abstract>
+  </front>
+
+  <middle>
+    <section title="Introduction">
+        <t>
+
+            The <xref target="RFC7480">Registration Data Access
+            Protocol (RDAP)</xref> is used by Regional Internet
+            Registries (RIRs) and Domain Name Registries (DNRs) to
+            provide access to their resource registration information.
+            For a client, this typically involves following the
+            bootstrap process <xref target="RFC7484" /> to determine
+            the base URL for the query.  When the service operator for
+            the base URL has delegated authority for a resource to a
+            third party, the operator will configure its RDAP service
+            to redirect requests accordingly.
+
+        </t>
+
+        <t>
+
+            The client may also be interested in the registration data
+            that the original service operator has, though.  For
+            example:
+
+            <list>
+                <t>
+
+                    the original service operator's responses may be
+                    in conformance with an externally-defined RDAP
+                    profile, such that the client finds them easier or
+                    more useful to deal with than the responses
+                    provided by the delegated service operator;
+
+                </t>
+
+                <t>
+
+                    the original service operator's responses may
+                    provide useful information about larger
+                    delegations of resources to delegated service
+                    operators;
+
+                </t>
+
+                <t>
+
+                    where both service operators record information
+                    about the same delegation (e.g. the same specific
+                    IP network), the delegated operator may omit some
+                    information recorded by the original operator
+                    which is useful to the client; or
+
+                </t>
+
+                <t>
+
+                    the delegated service may be unavailable for some
+                    reason, and the client may be content to rely on
+                    the data from the original service operator in
+                    that situation.
+
+                </t>
+            </list>
+
+        </t>
+
+        <t>
+
+            It is already open to a service operator to return an RDAP
+            object as the body of a redirect response: see section 6.4
+            of <xref target="RFC7231" /> and section 5.2 of <xref
+            target="RFC7480" />, neither of which prohibits this
+            behaviour.  However, because this is unusual both in the
+            RDAP context and more generally, this document defines the
+            parameters of this behaviour, as well as a conformance
+            code that can be used to signal that this behaviour is
+            supported.
+
+        </t>
+
+      <section title="Conventions Used in This Document">
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when, they appear in all capitals, as shown here.</t>
+      </section>
+
+    </section>
+
+    <section title="Implementation">
+        <t>
+
+            An RDAP service operator that implements this
+            specification MUST include an RDAP object (<xref
+            target="RFC7483" />) as the body of
+            any non-permanent (HTTP 302, 303, or 307) redirect
+            response that it returns, whenever it records data in its
+            own right about the requested resource, or about a
+            resource for which a response may be validly returned for
+            the requested resource (for example, a less-specific IP
+            network object).
+
+        </t>
+
+	<t>
+
+            An RDAP service operator that implements this
+            specification MUST include the string literal
+            "redirect_with_content" in the rdapConformance array of a
+            "/help" response, as well as any redirect response that
+            includes an RDAP object as its body.  The service operator
+            MAY include this string literal in other responses.
+
+        </t>
+    </section>
+
+    <section title="Security Considerations">
+        <t>
+
+            <xref target="RFC7481" /> describes security requirements
+            and considerations for RDAP generally.  This specification
+            does not introduce any new requirements/considerations past those
+            defined in that document.
+
+        </t>
+
+    </section>
+
+    <section anchor="IANA" title="IANA Considerations">
+
+	<t>IANA is requested to register the following values in the RDAP Extensions Registry:</t>
+
+	<t><list style="none">
+	    <t>Extension identifier: redirect_with_content</t>
+	    <t>Registry operator: Any</t>
+	    <t>Published specification: This document.</t>
+	    <t>Contact: IETF &lt;iesg@ietf.org&gt;</t>
+	</list></t>
+
+    </section>
+
+    <section anchor="Acknowledgements" title="Acknowledgements">
+        <t>
+
+            ARIN's RDAP service implements this behaviour when
+            redirecting to other RIRs, which is what prompted
+            consideration/documentation of this approach in the
+            delegation context.
+
+        </t>
+    </section>
+
+  </middle>
+
+  <back>
+    <references title="Normative References">
+      &RFC2119;
+      &RFC7481;
+      &RFC7483;
+      &RFC8174;
+    </references>
+
+    <references title="Informative References">
+      &RFC7231;
+      &RFC7480;
+      &RFC7484;
+    </references>
+  </back>
+</rfc>
