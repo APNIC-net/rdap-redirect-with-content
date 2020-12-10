@@ -5,7 +5,7 @@
                                                              T. Harrison
                                                            G. Michaelson
                                                                    APNIC
-                                                       December 10, 2020
+                                                       December 11, 2020
 
 
                        RDAP Redirect with Content
@@ -135,7 +135,7 @@ Harrison & Michaelson                                           [Page 2]
 
       Published specification: This document.
 
-      Contact: IETF <iesg@ietf.org>
+      Contact: Tom Harrison <tomh@apnic.net>
 
 5.  Acknowledgements
 
