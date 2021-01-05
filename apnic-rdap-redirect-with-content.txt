@@ -5,7 +5,7 @@
                                                              T. Harrison
                                                            G. Michaelson
                                                                    APNIC
-                                                       December 11, 2020
+                                                         January 6, 2021
 
 
                        RDAP Redirect with Content
@@ -55,7 +55,7 @@ Table of Contents
 
 Harrison & Michaelson                                           [Page 1]
 
-                       RDAP Redirect with Content          December 2020
+                       RDAP Redirect with Content           January 2021
 
 
    The client may also be interested in the registration data that the
@@ -111,7 +111,7 @@ Harrison & Michaelson                                           [Page 1]
 
 Harrison & Michaelson                                           [Page 2]
 
-                       RDAP Redirect with Content          December 2020
+                       RDAP Redirect with Content           January 2021
 
 
    rdapConformance array of a "/help" response, as well as any redirect
@@ -137,6 +137,8 @@ Harrison & Michaelson                                           [Page 2]
 
       Contact: Tom Harrison <tomh@apnic.net>
 
+      Intended usage: COMMON
+
 5.  Acknowledgements
 
    ARIN's RDAP service implements this behaviour when redirecting to
@@ -157,18 +159,21 @@ Harrison & Michaelson                                           [Page 2]
               DOI 10.17487/RFC7481, March 2015,
               <https://www.rfc-editor.org/info/rfc7481>.
 
-   [RFC7483]  Newton, A. and S. Hollenbeck, "JSON Responses for the
-              Registration Data Access Protocol (RDAP)", RFC 7483,
-              DOI 10.17487/RFC7483, March 2015,
-              <https://www.rfc-editor.org/info/rfc7483>.
+
+
 
 
 
 
 Harrison & Michaelson                                           [Page 3]
 
-                       RDAP Redirect with Content          December 2020
+                       RDAP Redirect with Content           January 2021
 
+
+   [RFC7483]  Newton, A. and S. Hollenbeck, "JSON Responses for the
+              Registration Data Access Protocol (RDAP)", RFC 7483,
+              DOI 10.17487/RFC7483, March 2015,
+              <https://www.rfc-editor.org/info/rfc7483>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -208,11 +213,6 @@ Authors' Addresses
    Australia
 
    Email: ggm@apnic.net
-
-
-
-
-
 
 
 

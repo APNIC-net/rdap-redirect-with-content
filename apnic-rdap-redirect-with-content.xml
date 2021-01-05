@@ -56,7 +56,7 @@
       </address>
     </author>
 
-    <date month="December" year="2020" />
+    <date month="January" year="2021" />
 
     <area></area>
     <workgroup></workgroup>
@@ -216,6 +216,7 @@
 	    <t>Registry operator: Any</t>
 	    <t>Published specification: This document.</t>
 	    <t>Contact: Tom Harrison &lt;tomh@apnic.net&gt;</t>
+	    <t>Intended usage: COMMON</t>
 	</list></t>
 
     </section>
